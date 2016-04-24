@@ -116,7 +116,6 @@ function install_ansible() {
   ln -s ${ansible_build_path} /app/.platform_tools/ansible
 
   output_line "Ansible symlinked to /app/.platform_tools/ansible"
-  output_line "`ls /app/.platform_tools/ansible/bin`"
 
   PATH=/app/.platform_tools/ansible/bin:$PATH
 }
