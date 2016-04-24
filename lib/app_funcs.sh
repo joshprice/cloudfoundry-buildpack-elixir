@@ -99,12 +99,24 @@ function write_profile_d_script() {
 function install_ansible() {
   output_section "Installing ansible"
 
-  ansible_download_file=ansible-latest.tar.gz
+  ansible_version=2.0.2.0
+  ansible_download_file=ansible-${ansible_version}.tar.gz
+
   local download_url="http://releases.ansible.com/ansible/${ansible_download_file}"
   curl -s ${download_url} -o ${cache_path}/${ansible_download_file} || exit 1
 
-  tar zxf ${cache_path}/${ansible_download_file}
+  ansible_build_path=${cache_path}/ansible
 
-  output_line "Ansible extracted to ${cache_path}"
-  output_line "`ls ${cache_path}`"
+  rm -rf ${ansible_build_path}
+  mkdir -p ${ansible_build_path}
+  tar zxf ${cache_path}/${ansible_download_file} -C ${ansible_build_path} --strip-components=1
+
+  rm -rf ${platform_tools_path}/ansible
+  mkdir -p ${platform_tools_path}
+  ln -s ${ansible_build_path} ${platform_tools_path}/ansible
+
+  output_line "Ansible symlinked to ${platform_tools_path}/ansible"
+  output_line "`ls ${platform_tools_path}/ansible/bin`"
+
+  PATH=${platform_tools_path}/ansible/bin:$PATH
 }
