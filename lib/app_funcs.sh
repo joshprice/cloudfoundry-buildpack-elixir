@@ -95,3 +95,9 @@ function write_profile_d_script() {
                      export MIX_ENV=${MIX_ENV}"
   echo $export_line >> $build_path/.profile.d/elixir_buildpack_paths.sh
 }
+
+function install_ansible() {
+  output_section "Installing ansible"
+
+  apt-get install ansible
+}
