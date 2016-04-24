@@ -113,9 +113,10 @@ function install_ansible() {
 
   rm -rf /app/.platform_tools/ansible
   mkdir -p /app/.platform_tools
-  ln -s ${ansible_build_path} /app/.platform_tools/ansible
+  cp -R ${ansible_build_path} /app/.platform_tools/ansible
 
-  output_line "Ansible symlinked to /app/.platform_tools/ansible"
+  output_line "Ansible installed to /app/.platform_tools/ansible"
+  output_line "`ls /app/.platform_tools/ansible/bin`"
 
   PATH=/app/.platform_tools/ansible/bin:$PATH
 }
