@@ -99,5 +99,12 @@ function write_profile_d_script() {
 function install_ansible() {
   output_section "Installing ansible"
 
-  sudo apt-get install ansible
+  ansible_download_file=ansible-latest.tar.gz
+  local download_url="http://releases.ansible.com/ansible/${ansible_download_file}"
+  curl -s ${download_url} -o ${cache_path}/${ansible_download_file} || exit 1
+
+  tar zxf ${cache_path}/${ansible_download_file}
+
+  output_line "Ansible extracted to ${cache_path}"
+  output_line "`ls ${cache_path}`"
 }
