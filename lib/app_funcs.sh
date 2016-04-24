@@ -111,12 +111,12 @@ function install_ansible() {
   mkdir -p ${ansible_build_path}
   tar zxf ${cache_path}/${ansible_download_file} -C ${ansible_build_path} --strip-components=1
 
-  rm -rf ${platform_tools_path}/ansible
-  mkdir -p ${platform_tools_path}
-  ln -s ${ansible_build_path} ${platform_tools_path}/ansible
+  rm -rf /app/.platform_tools/ansible
+  mkdir -p /app/.platform_tools
+  ln -s ${ansible_build_path} /app/.platform_tools/ansible
 
-  output_line "Ansible symlinked to ${platform_tools_path}/ansible"
-  output_line "`ls ${platform_tools_path}/ansible/bin`"
+  output_line "Ansible symlinked to /app/.platform_tools/ansible"
+  output_line "`ls /app/.platform_tools/ansible/bin`"
 
-  PATH=${platform_tools_path}/ansible/bin:$PATH
+  PATH=/app/.platform_tools/ansible/bin:$PATH
 }
