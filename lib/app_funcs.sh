@@ -99,5 +99,5 @@ function write_profile_d_script() {
 function install_ansible() {
   output_section "Installing ansible"
 
-  apt-get install ansible
+  sudo apt-get install ansible
 }
