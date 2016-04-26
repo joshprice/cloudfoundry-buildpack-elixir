@@ -111,8 +111,9 @@ function install_ansible() {
   mkdir -p ${ansible_build_path}
   tar zxf ${cache_path}/${ansible_download_file} -C ${ansible_build_path} --strip-components=1
 
-  output_line "Ansible installed to /app/.platform_tools/ansible"
-  output_line "`ls -l /app/.platform_tools/ansible/bin`"
+  output_line "Ansible installed to ${ansible_build_path}"
+  output_line "`ls -l /app/.platform_tools`"
+  output_line "`ls -l ${ansible_build_path}`"
 
-  PATH=${ansible_build_path}/bin:$PATH
+  # PATH=${ansible_build_path}/bin:$PATH
 }
