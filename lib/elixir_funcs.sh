@@ -16,7 +16,7 @@ function download_elixir() {
 }
 
 function install_elixir() {
-  output_section "Installing Elixir ${elixir_version} $(elixir_changed) in $(elixir_path)"
+  output_section "Installing Elixir ${elixir_version} $(elixir_changed)"
 
   mkdir -p $(elixir_path)
   cd $(elixir_path)
