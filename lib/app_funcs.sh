@@ -105,14 +105,14 @@ function install_ansible() {
   local download_url="http://releases.ansible.com/ansible/${ansible_download_file}"
   curl -s ${download_url} -o ${cache_path}/${ansible_download_file} || exit 1
 
-  ansible_build_path=/app/.platform_tools/ansible
+  ansible_build_path=${build_path}/.platform_tools/ansible
 
   rm -rf ${ansible_build_path}
   mkdir -p ${ansible_build_path}
   tar zxf ${cache_path}/${ansible_download_file} -C ${ansible_build_path} --strip-components=1
 
   output_line "Ansible installed to ${ansible_build_path}"
-  output_line "`ls -l /app/.platform_tools`"
+  output_line "`ls -l ${build_path}/.platform_tools`"
   output_line "`ls -l ${ansible_build_path}`"
 
   # PATH=${ansible_build_path}/bin:$PATH
