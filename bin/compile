@@ -29,8 +29,6 @@ commands_to_run=(
 
   clean_cache
 
-  install_ansible
-
   download_erlang
   install_erlang
 
@@ -47,6 +45,8 @@ commands_to_run=(
   backup_app
   backup_mix
   write_profile_d_script
+
+  install_ansible
 )
 
 for command in "${commands_to_run[@]}"
