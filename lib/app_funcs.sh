@@ -113,5 +113,5 @@ function install_ansible() {
 
   output_line "Ansible installed to ${ansible_build_path}"
 
-  PATH=${ansible_build_path}/bin:$PATH
+  PATH=${ansible_build_path}:${ansible_build_path}/bin:${PATH}
 }
