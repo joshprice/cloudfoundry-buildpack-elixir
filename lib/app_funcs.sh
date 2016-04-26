@@ -99,24 +99,20 @@ function write_profile_d_script() {
 function install_ansible() {
   output_section "Installing ansible"
 
-  ansible_version=2.0.2.0
+  ansible_version=latest
   ansible_download_file=ansible-${ansible_version}.tar.gz
 
   local download_url="http://releases.ansible.com/ansible/${ansible_download_file}"
   curl -s ${download_url} -o ${cache_path}/${ansible_download_file} || exit 1
 
-  ansible_build_path=${cache_path}/ansible
+  ansible_build_path=/app/.platform_tools/ansible
 
   rm -rf ${ansible_build_path}
   mkdir -p ${ansible_build_path}
   tar zxf ${cache_path}/${ansible_download_file} -C ${ansible_build_path} --strip-components=1
 
-  rm -rf /app/.platform_tools/ansible
-  mkdir -p /app/.platform_tools
-  cp -R ${ansible_build_path} /app/.platform_tools/ansible
-
   output_line "Ansible installed to /app/.platform_tools/ansible"
-  output_line "`ls /app/.platform_tools/ansible/bin`"
+  output_line "`ls -l /app/.platform_tools/ansible/bin`"
 
-  PATH=/app/.platform_tools/ansible/bin:$PATH
+  PATH=${ansible_build_path}/bin:$PATH
 }
